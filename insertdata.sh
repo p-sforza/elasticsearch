@@ -6,5 +6,6 @@ chown elasticsearch:elasticsearch /earth_meteorite_landings.json
 
 es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek;
 sleep 15;
-curl -vvvv -XPOST 'http://localhost:9200/_shutdown';
+ps -aux;
+PID=$(ps -aux | grep -m1 elastic | awk '{ print $2 }') && kill $PID;
 
