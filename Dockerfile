@@ -1,5 +1,5 @@
 FROM registry.centos.org/centos/centos:7
-ADD elasticsearch-2.4.0.rpm  earth_meteorite_landings.json /
+ADD elasticsearch-2.4.0.rpm  earth_meteorite_landings.json insertdata.sh /
 
 RUN ["/bin/bash", "-c", "yum -y install epel-release"]
 RUN ["/bin/bash", "-c", "yum -y update"]
@@ -19,16 +19,16 @@ RUN ["/bin/bash", "-c", "chsh -s /bin/bash elasticsearch"]
 
 
 #RUN ["/bin/bash", "-c", "touch /run.sh"]
-RUN echo '#!/usr/bin/env bash' > /run.sh
-RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
-RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
-RUN ["/bin/bash", "-c", "echo \"sleep 15\" >> /run.sh"]
-RUN ["/bin/bash", "-c", "echo \"chown elasticsearch:elasticsearch /earth_meteorite_landings.json\" >> /run.sh"]
-RUN ["/bin/bash", "-c", "echo \"netstat -anp | grep elastic\" >> /run.sh"]
-RUN ["/bin/bash", "-c", "echo \"es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek\" >> /run.sh"]
+#RUN echo '#!/usr/bin/env bash' > /run.sh
+#RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
+#RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
+#RUN ["/bin/bash", "-c", "echo \"sleep 15\" >> /run.sh"]
+#RUN ["/bin/bash", "-c", "echo \"chown elasticsearch:elasticsearch /earth_meteorite_landings.json\" >> /run.sh"]
+#RUN ["/bin/bash", "-c", "echo \"netstat -anp | grep elastic\" >> /run.sh"]
+#RUN ["/bin/bash", "-c", "echo \"es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek\" >> /run.sh"]
                         
-RUN ["/bin/bash", "-c", "chmod +x /run.sh && \
-                        /run.sh"]
+RUN ["/bin/bash", "-c", "chmod +x /insertdata.sh"]
+RUN ["/bin/bash", "-c", "/insertdata.sh"]
 
 USER elasticsearch
 EXPOSE 9200 9300
