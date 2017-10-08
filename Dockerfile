@@ -20,8 +20,8 @@ RUN ["/bin/bash", "-c", "yum -y install epel-release && \
                          chsh -s /bin/bash elasticsearch"]
 
 
-RUN ["/bin/bash", "-c", "touch /run.sh"]
-RUN ["/bin/bash", "-c", "echo \'#!/usr/bin/env bash\' >> /run.sh"]
+#RUN ["/bin/bash", "-c", "touch /run.sh"]
+RUN echo '#!/usr/bin/env bash' > /run.sh
 RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
 RUN ["/bin/bash", "-c", "echo \"runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'\" >> /run.sh"]
 RUN ["/bin/bash", "-c", "echo \"sleep 15\" >> /run.sh"]
