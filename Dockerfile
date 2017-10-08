@@ -1,5 +1,5 @@
 FROM registry.centos.org/centos/centos:7
-ADD elasticsearch-2.4.0.rpm  earth_meteorite_landings.json run.sh /
+ADD elasticsearch-2.4.0.rpm  earth_meteorite_landings.json /
 
 RUN ["/bin/bash", "-c", "yum -y install epel-release && \
                          yum -y update && \
