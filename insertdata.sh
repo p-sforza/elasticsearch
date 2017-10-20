@@ -2,6 +2,7 @@
 
 #runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'
 
+hostname
 /usr/share/elasticsearch/bin/elasticsearch -d
 
 sleep 15
