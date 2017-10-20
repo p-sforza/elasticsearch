@@ -1,3 +1,0 @@
-FROM registry.centos.org/centos/centos:7
-RUN ["/bin/bash", "-c", "yum -y install epel-release"]
-RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
