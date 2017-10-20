@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-#runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'
-
 hostname
-/usr/share/elasticsearch/bin/elasticsearch -d
+runuser -l elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d'
 
 sleep 15
 chown elasticsearch:elasticsearch /earth_meteorite_landings.json
