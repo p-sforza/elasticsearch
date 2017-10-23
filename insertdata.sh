@@ -13,7 +13,7 @@ if [ $ELASTIC_PID ]; then
 else 
 	# START ELASTIC
 	echo "STARTING ELASTIC!";
-	/usr/share/elasticsearch/bin/elasticsearch -d
+	runuser elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d';
 
 	until [ STARTED=$(grep started "${ELASTIC_LOG}" ) ]; do
 		echo '   elastic not up...';
