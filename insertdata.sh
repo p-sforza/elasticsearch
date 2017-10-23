@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-su elasticsearch 
+su --preserve-environment elasticsearch 
 
 #/home/elasticsearch/.bash_proflle
 
