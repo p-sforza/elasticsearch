@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+su elasticsearch 
+
+#/home/elasticsearch/.bash_proflle
 
 env
 
