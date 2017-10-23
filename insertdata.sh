@@ -23,7 +23,7 @@ else
 
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
-	chown elasticsearch:elasticsearch /earth_meteorite_landings.json
+	#chown elasticsearch:elasticsearch /earth_meteorite_landings.json
 	es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek;
 	
 	# STOP ELASTIC
