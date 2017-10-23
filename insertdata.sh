@@ -5,7 +5,7 @@ su --preserve-environment elasticsearch
 
 env
 
-runuser -l elasticsearch -c 'echo "!!!!!!!!!!!!" && env';
+echo "!!!!!!!!!!!!" && env;
 
 runuser -l elasticsearch -c 'touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/';
 runuser -l elasticsearch -c 'echo "NEW BUILD FOR ELASTIC!" > "${ELASTIC_LOG}" ';
