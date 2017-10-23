@@ -1,7 +1,10 @@
 FROM elastic/elasticsearch-core-24-centos
 
-ENV SUMMARY="Image to create index for elastic 2.4 in build phase"        \
-    DESCRIPTION="This image provide elastic core with data on repo"
+ENV \
+      SUMMARY="Image to create index for elastic 2.4 in build phase" \
+      DESCRIPTION="This image provide elastic core with data on repo" \
+      ELASTIC_LOG='/usr/share/elasticsearch/logs/elasticsearch.log'
+
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
