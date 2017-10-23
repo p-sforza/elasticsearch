@@ -4,7 +4,7 @@ env
 touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/;
 echo "NEW BUILD FOR ELASTIC!" > "${ELASTIC_LOG}";
 
-ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep -v grep | awk '{ print $2 }');
+ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }');
 ps -aux;
 if [ $ELASTIC_PID ]; then
         echo "ERROR: ELASTIC IS ALREADY UP!" 
@@ -28,7 +28,7 @@ else
 	
 	# STOP ELASTIC
 	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "{$ELASTIC_LOG}" ;
-	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep -v grep | awk '{ print $2 }')
+	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }')
 	kill $ELASTIC_PID;
 	
 	until [ STOPPED=$(grep closed "${ELASTIC_LOG}" ) ]; do
