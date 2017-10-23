@@ -18,7 +18,7 @@ LABEL summary="$SUMMARY" \
 ADD earth_meteorite_landings.json insertdata.sh /
 
 RUN ["/bin/bash", "-c", "chmod +x /insertdata.sh"]
-RUN ["/bin/bash", "-c", "/insertdata.sh"]
+RUN ["/bin/bash", "-c", "su elasticsearch --preserve-environment /insertdata.sh"]
 
 USER elasticsearch
 EXPOSE 9200 9300

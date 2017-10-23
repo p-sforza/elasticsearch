@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-su --preserve-environment elasticsearch 
 env
 
 touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/;
@@ -13,7 +12,7 @@ if [ $ELASTIC_PID ]; then
 else 
 	# START ELASTIC
 	echo "STARTING ELASTIC!";
-	runuser elasticsearch -c '/usr/share/elasticsearch/bin/elasticsearch -d';
+	/usr/share/elasticsearch/bin/elasticsearch -d;
 
 	until [ STARTED=$(grep started "${ELASTIC_LOG}" ) ]; do
 		echo '   elastic not up...';
