@@ -19,7 +19,7 @@ else
 		sleep 1;
 	done
 	echo "ELASTIC IS UP!"
-	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic;
+	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic | grep java ;
 
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
