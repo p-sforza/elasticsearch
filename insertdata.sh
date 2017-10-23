@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-hostname
+env
+
+runuser -l elasticsearch -c 'echo "!!!!!!!!!!!!" && env';
 
 runuser -l elasticsearch -c 'touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/';
 runuser -l elasticsearch -c 'echo "NEW BUILD FOR ELASTIC!" > "${ELASTIC_LOG}" ';
