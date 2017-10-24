@@ -26,6 +26,9 @@ else
 	done
 	echo "ELASTIC IS UP!"
 	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }' ;
+        echo "LOGFILE:";
+           cat ${ELASTIC_LOG};
+        echo "END OF LOGFILE";
 
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
