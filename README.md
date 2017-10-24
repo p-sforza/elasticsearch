@@ -41,9 +41,14 @@ NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare i
 
 ## TEST
 ### Test1: accesso alle risorse 
-   http://YOUR_APP_URL/ --> sulla / dell rotta elastic risponde elastic
-   http://YOUR_APP_URL/_plugin/head/ --> sul path _plugin/head/ è possibile accedere al plugin installato, vedere e navigare gli indici creati
-   http://YOUR_APP_URL/earth_meteorite_landings_index/_search --> sul path earth_meteorite_landings_index/_search elastic ritorna i primi item indicizzati *
+   http://YOUR_APP_URL/
+       --> sulla / dell rotta elastic risponde elastic
+
+   http://YOUR_APP_URL/_plugin/head/ 
+       --> sul path _plugin/head/ è possibile accedere al plugin installato, vedere e navigare gli indici creati
+
+   http://YOUR_APP_URL/earth_meteorite_landings_index/_search 
+       --> sul path earth_meteorite_landings_index/_search elastic ritorna i primi item indicizzati *
 
    *se cambi il nome dell'indice aggiusta il path
 
