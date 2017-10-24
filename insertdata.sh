@@ -18,7 +18,8 @@ else
 	echo "LOGFILE:";
         cat ${ELASTIC_LOG};
 
-	until [ STARTED=$(grep started "${ELASTIC_LOG}" ) ]; do
+	STARTED=$(grep " started" ${ELASTIC_LOG});
+	until [ $STARTED ]; do
 		echo '   elastic not up...';
 		sleep 1;
 	done
@@ -35,7 +36,8 @@ else
 	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }')
 	kill $ELASTIC_PID;
 	
-	until [ STOPPED=$(grep closed "${ELASTIC_LOG}" ) ]; do
+        STOPPED=$(grep " closed" ${ELASTIC_LOG});
+        until [ $STOPPED  ]; do
 		echo '   elastic not down...';
 		sleep 1;
 	done
