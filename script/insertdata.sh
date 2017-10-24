@@ -39,9 +39,9 @@ else
 	for LINE in "${INDEX_MAP[@]}"; do
 		IFS=' ' read -ra I <<< "$LINE"
                 echo "MAP: $LINE";
-		echo "DATA: $I[0]";
-                echo "INDEX: $I[1]";
-		echo "TYPE: $I[2]";
+		echo "DATA: ${I[0]}";
+                echo "INDEX: ${I[1]}";
+		echo "TYPE: ${I[2]}";
 
 	        es-json-load --data --file=${HOME}/data/$I[0] --index=$I[1] --type=$I[2];
                 
