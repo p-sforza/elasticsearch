@@ -13,14 +13,15 @@ else
 	# START ELASTIC
 	echo "STARTING ELASTIC!";
 	/usr/share/elasticsearch/bin/elasticsearch -d;
-	sleep 10;
         
 	echo "LOGFILE:";
         cat ${ELASTIC_LOG};
  
-	until [ STARTED=$(grep started $ELASTIC_LOG) == "" ]; do
+	STARTED=$(grep started $ELASTIC_LOG);
+	while [ $STARTED == "" ]; do
 		echo '   elastic not up...';
 		sleep 1;
+		STARTED=$(grep started $ELASTIC_LOG);
 	done
 	echo "ELASTIC IS UP!"
 	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic | grep java ;
