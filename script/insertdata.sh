@@ -37,12 +37,13 @@ else
 
 	mapfile -t INDEX_MAP < "${HOME}/mapping/data.map"   
 	for LINE in "${INDEX_MAP[@]}"; do
+		IFS=' ' read -ra I <<< "$LINE"
                 echo "MAP: $LINE";
-		echo "DATA: $LINE[0]";
-                echo "INDEX: $LINE[1]";
-		echo "TYPE: $LINE[2]";
+		echo "DATA: $I[0]";
+                echo "INDEX: $I[1]";
+		echo "TYPE: $I[2]";
 
-	        es-json-load --data --file=${HOME}/data/$LINE[0] --index=$LINE[1] --type=$LINE[2];
+	        es-json-load --data --file=${HOME}/data/$I[0] --index=$I[1] --type=$I[2];
                 
 		echo "LOGFILE:";
                    cat ${ELASTIC_LOG};
