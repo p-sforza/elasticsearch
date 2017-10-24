@@ -42,7 +42,7 @@ else
 	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "${ELASTIC_LOG}" ;
 
 	ps -aux
-	su - root ps -aux
+	su - root -c 'ps -aux'
 	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }')
 	kill ${ELASTIC_PID};
 	
