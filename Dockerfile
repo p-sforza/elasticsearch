@@ -4,7 +4,7 @@ ENV \
        SUMMARY="Image to create index for elastic 2.4 in build phase" \
        DESCRIPTION="This image provide elastic core with data on repo" \
        ELASTIC_LOG='/usr/share/elasticsearch/logs/elasticsearch.log' \
-       HOME=/opt/app-root/src/ \
+       HOME=/opt/app-root/src \
        ELASTIC_HOME=/usr/share/elasticsearch \
        JAVA_VER=1.8.0 \
        ES_CONF=/usr/share/elasticsearch/config/ \
