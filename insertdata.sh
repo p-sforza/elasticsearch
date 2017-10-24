@@ -32,14 +32,16 @@ else
 	es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek;
 	
 	# STOP ELASTIC
-	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "{$ELASTIC_LOG}" ;
+	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "${ELASTIC_LOG}" ;
+
 	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }')
 	kill $ELASTIC_PID;
 	
         STOPPED=$(grep " closed" ${ELASTIC_LOG});
-        until [ $STOPPED  ]; do
+        while [ "$STOPPED" == ""  ]; do
 		echo '   elastic not down...';
 		sleep 1;
+		STOPPED=$(grep " closed" ${ELASTIC_LOG});
 	done
         echo "ELASTIC IS DOWN!" 
 fi
