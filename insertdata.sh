@@ -34,12 +34,17 @@ else
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
 	#chown elasticsearch:elasticsearch /earth_meteorite_landings.json
 	es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek;
+        echo "LOGFILE:";
+           cat ${ELASTIC_LOG};
+        echo "END OF LOGFILE";
 	
 	# STOP ELASTIC
 	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "${ELASTIC_LOG}" ;
 
+	ps -aux
+	su - root ps -aux
 	ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }')
-	kill $ELASTIC_PID;
+	kill ${ELASTIC_PID};
 	
         STOPPED=$(grep " closed" ${ELASTIC_LOG});
         while [ "$STOPPED" == ""  ]; do
