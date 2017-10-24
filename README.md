@@ -2,7 +2,7 @@
 Questo codice consente di creare una istanza di elasticsearch containerizzata che crea gli indici in fase di build a partire da:
 1) i dati (.json) caricati in data/
 2) i tipi (.type) caricati in type/ (DA IMPLEMENTARE)
-3) il file di map (data.map) che contiene l'associazione  <DATA FILENAME> <INDEX NAME> <TYPE NAME>
+3) il file di map (data.map) che contiene l'associazione  DATA_FILENAME INDEX_NAME TYPE_NAME
 
 in script/ è presente il file insertdata.sh che viene lanciato in fase di build e lancia la procedura di bulk_upload.
 
@@ -41,15 +41,16 @@ NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare i
 
 ## TEST
 ### Test1: accesso alle risorse 
-   http://<YOUR APP URL>/ --> sulla / dell rotta elastic risponde elastic
-   http://<YOUR APP URL>/_plugin/head/ --> sul path _plugin/head/ è possibile accedere al plugin installato, vedere e navigare gli indici creati
-   http://<YOUR APP URL>/earth_meteorite_landings_index/_search --> sul path earth_meteorite_landings_index/_search elastic ritorna i primi item indicizzati *
+   http://YOUR_APP_URL/ --> sulla / dell rotta elastic risponde elastic
+   http://YOUR_APP_URL/_plugin/head/ --> sul path _plugin/head/ è possibile accedere al plugin installato, vedere e navigare gli indici creati
+   http://YOUR_APP_URL/earth_meteorite_landings_index/_search --> sul path earth_meteorite_landings_index/_search elastic ritorna i primi item indicizzati *
+
    *se cambi il nome dell'indice aggiusta il path
 
 ### Test2: update dei dati
    effettuare un update sul codice creando un nuovo indice:
    1) creazioen del nuovo json da caricare in data/
-   2) aggiunta dell'entry nel file mapping/data.map (il formato è <DATA FILENAME> <INDEX NAME> <TYPE NAME> )
+   2) aggiunta dell'entry nel file mapping/data.map (il formato è DATA_FILENAME INDEX_NAME> TYPE_NAME )
    
 
 # Issue note
@@ -70,6 +71,6 @@ git clone https://github.com/p-sforza/elasticsearch-core-2.4-centos
 git clone https://github.com/p-sforza/elasticsearch
 
 cd [https://github.com/p-sforza/elasticsearch | elasticsearch]
-docker build -t <IMAGE NAME>:<IMAGE VERSION> -f ./Dockerfile .
-docker run <IMAGE NAME>:<IMAGE VERSION>
+docker build -t IMAGE_NAME:IMAGE_VERSION -f ./Dockerfile .
+docker run IMAGE_NAME:IMAGE_VERSION
 ```
