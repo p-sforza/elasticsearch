@@ -35,7 +35,7 @@ else
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
 
-	mapfile -t INDEX_MAP < "${HOME}/data/*.map"   
+	mapfile -t INDEX_MAP < "${HOME}/mapping/*.map"   
 	for LINE in "${INDEX_MAP[@]}"; do
                 echo "MAP: $LINE";
 		echo "DATA: $LINE[0]";
