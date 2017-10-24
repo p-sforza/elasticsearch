@@ -18,7 +18,7 @@ else
         cat ${ELASTIC_LOG};
  
 	STARTED=$(grep started $ELASTIC_LOG);
-	while [ $STARTED == "" ]; do
+	while [ "$STARTED" == "" ]; do
 		echo '   elastic not up...';
 		sleep 1;
 		STARTED=$(grep started $ELASTIC_LOG);
