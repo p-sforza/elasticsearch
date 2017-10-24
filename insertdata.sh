@@ -18,8 +18,7 @@ else
 	echo "LOGFILE:";
         cat ${ELASTIC_LOG};
 
-	STARTED=$(grep " started" ${ELASTIC_LOG});
-	until [ $STARTED ]; do
+	until [ STARTED=$(grep "started" ${ELASTIC_LOG})==started ]; do
 		echo '   elastic not up...';
 		sleep 1;
 	done
