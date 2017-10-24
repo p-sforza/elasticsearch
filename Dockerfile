@@ -4,7 +4,7 @@ ENV \
        SUMMARY="Image to create index for elastic 2.4 in build phase" \
        DESCRIPTION="This image provide elastic core with data on repo" \
        ELASTIC_LOG='/usr/share/elasticsearch/logs/elasticsearch.log' \
-       HOME=/opt/app-root/src \
+       HOME=/opt/app-root/src/ \
        ELASTIC_HOME=/usr/share/elasticsearch \
        JAVA_VER=1.8.0 \
        ES_CONF=/usr/share/elasticsearch/config/ \
@@ -30,8 +30,8 @@ ADD mapping ${HOME}
 ADD script ${HOME}
 ADD type ${HOME}
 
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch ${HOME}"]
-RUN ["/bin/bash", "-c", "chmod +x ${HOME}/script/insertdata.sh"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch ${HOME} && ls -lai ${HOME}"]
+RUN ["/bin/bash", "-c", "chmod +x ${HOME}script/insertdata.sh && ls -lai ${HOME}script"]
 RUN ["/bin/bash", "-c", "su elasticsearch --preserve-environment /insertdata.sh"]
 
 USER elasticsearch
