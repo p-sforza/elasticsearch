@@ -43,7 +43,7 @@ else
                 echo "INDEX: ${I[1]}";
 		echo "TYPE: ${I[2]}";
 
-	        es-json-load --data --file=${HOME}/data/$I[0] --index=$I[1] --type=$I[2];
+	        es-json-load --data --file=${HOME}/data/${I[0]} --index=${I[1]} --type=${I[2]};
                 
 		echo "LOGFILE:";
                    cat ${ELASTIC_LOG};
