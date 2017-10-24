@@ -13,6 +13,7 @@ else
 	# START ELASTIC
 	echo "STARTING ELASTIC!";
 	/usr/share/elasticsearch/bin/elasticsearch -d;
+	sllep 5;
         
 	echo "LOGFILE:";
         cat ${ELASTIC_LOG};
