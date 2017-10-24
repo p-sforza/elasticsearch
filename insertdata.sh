@@ -2,7 +2,7 @@
 env
 
 touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/;
-echo "NEW BUILD FOR ELASTIC!" > "${ELASTIC_LOG}";
+echo "NEW BUILD FOR ELASTIC!" >> "${ELASTIC_LOG}";
 
 ELASTIC_PID=$(ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }');
 ps -aux;
@@ -16,7 +16,8 @@ else
         
 	echo "LOGFILE:";
         cat ${ELASTIC_LOG};
-  
+        echo "END OF LOGFILE";
+ 
 	STARTED=$(grep started $ELASTIC_LOG);
 	while [ "$STARTED" == "" ]; do
 		echo '   elastic not up...';
@@ -24,7 +25,7 @@ else
 		STARTED=$(grep started $ELASTIC_LOG);
 	done
 	echo "ELASTIC IS UP!"
-	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic | grep java ;
+	echo "ELASTIC PROCESS: " && ps -aux | grep -m1 elastic | grep java | grep -v grep | awk '{ print $2 }' ;
 
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
@@ -41,7 +42,7 @@ else
         while [ "$STOPPED" == ""  ]; do
 		echo '   elastic not down...';
 		sleep 1;
-		STOPPED=$(grep " closed" ${ELASTIC_LOG});
+		STOPPED=$(grep closed ${ELASTIC_LOG});
 	done
         echo "ELASTIC IS DOWN!" 
 fi
