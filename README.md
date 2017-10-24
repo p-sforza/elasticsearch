@@ -59,7 +59,8 @@ NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare i
    
 
 # Issue note
-1) 
+1) 2 warning in fase di build
+2) il caricamento dei dati di test contiene 1 item non accettato (sembra non essere deterministico, il doppio caricamento dello stesso dataset su due indici diversi ritorna 1 doc di differenza)
 
 # Da implementare
 1) mapping dei type sugli indici
