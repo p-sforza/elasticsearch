@@ -34,11 +34,20 @@ else
 
 	# UPLOAD DATA
 	echo "STARTING DATA UPLOAD!" >> "${ELASTIC_LOG}" ;
-	#chown elasticsearch:elasticsearch /earth_meteorite_landings.json
-	es-json-load --data --file=/earth_meteorite_landings.json --index=testk --type=tipek;
-        echo "LOGFILE:";
-           cat ${ELASTIC_LOG};
-        echo "END OF LOGFILE";
+
+	mapfile -t INDEX_MAP < "${HOME}/data/*.map"   
+	for LINE in "${INDEX_MAP[@]}"; do
+                echo "MAP: $LINE";
+		echo "DATA: $LINE[0]";
+                echo "INDEX: $LINE[1]";
+		echo "TYPE: $LINE[2]";
+
+	        es-json-load --data --file=${HOME}/data/$LINE[0] --index=$LINE[1] --type=$LINE[2];
+                
+		echo "LOGFILE:";
+                   cat ${ELASTIC_LOG};
+                echo "END OF LOGFILE";
+	done
 	
 	# STOP ELASTIC
 	echo "SHUTTING DOWN ELASTIC!" && echo "SHUTTING DOWN ELASTIC!" >> "${ELASTIC_LOG}" ;
