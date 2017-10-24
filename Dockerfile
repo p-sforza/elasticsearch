@@ -1,4 +1,4 @@
-FROM elastic/elasticsearch-core-24-centos
+FROM elasticsearch-core-24-centos:latest
 
 ENV \
        SUMMARY="Image to create index for elastic 2.4 in build phase" \
