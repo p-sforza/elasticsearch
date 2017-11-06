@@ -32,7 +32,11 @@ ADD kibana-4.6.6-x86_64.rpm ${HOME}
 RUN ["/bin/bash", "-c", "yum -y install epel-release"]
 RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
 
-# INSTALL, CONFIGURE AND RUN ELASTIC FOR TEST
+# INSTALL, CONFIGURE AND RUN KIBANA
 RUN ["/bin/bash", "-c", "yum -y install ${HOME}/kibana-4.6.6-x86_64.rpm && rm -f ${HOME}/kibana-4.6.6-x86_64.rpm"]
+RUN ["/bin/bash", "-c", "echo elasticsearch.url: http://172.17.0.2:9200 >> /opt/kibana/config/kibana.yml "]
 
+
+EXPOSE 5601
+ENTRYPOINT ["/opt/kibana/bin/kibana"]
 
