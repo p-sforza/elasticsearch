@@ -18,11 +18,11 @@ if [ $KIBANA_PID ]; then
 else 
         # CONFIGURE KIBANA
         echo "CONFIGURING KIBANA!";
-        echo "elasticsearch.url: ${ELASTIC_URL}" >> /opt/kibana/config/kibana.yml
+        echo "elasticsearch.url: ${ELASTIC_URL}" >> /opt/kibana/config/kibana.yml ;
 
 	# START KIBANA
-	echo "STARTING KIBANA!";
-	/opt/kibana/bin/kibana &;
+	echo "STARTING KIBANA!"
+	/opt/kibana/bin/kibana
 
 	#echo "LOGFILE:";
         #cat ${ELASTIC_LOG};
@@ -40,6 +40,5 @@ else
         #   cat ${ELASTIC_LOG};
         #echo "END OF LOGFILE";
 
-	# UPLOAD DATA
-
-echo "SCRIPT END... BYE BYE" 
+fi
+#echo "SCRIPT END... BYE BYEi" 

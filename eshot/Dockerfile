@@ -32,7 +32,7 @@ ADD type ${HOME}/type
 
 RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch ${HOME} && ls -lai ${HOME}"]
 RUN ["/bin/bash", "-c", "chmod +x ${HOME}/script/insertdata.sh && ls -lai ${HOME}/script"]
-RUN ["/bin/bash", "-c", "su elasticsearch --preserve-environment ${HOME}/script/insertdata.sh"]
+RUN ["/bin/bash", "-c", "su elasticsearch --preserve-environment ${HOME}/script/insertdata.sh "]
 
 USER elasticsearch
 EXPOSE 9200 9300
