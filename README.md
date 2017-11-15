@@ -28,14 +28,17 @@ I repo usati al momento sono
 ### Base image
 ```
 oc new-project myelastic
-oc new-build https://github.com/p-sforza/elasticsearch-core-2.4-centos
+--- OLD CMD: oc new-build https://github.com/p-sforza/elasticsearch-core-2.4-centos
+oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch/ecore
 ```
 NOTE: Aspetta che termini la build di base (circa 2 min.).
 
 ### APP
 ```
-oc new-app https://github.com/p-sforza/elasticsearch
+oc new-app https://github.com/p-sforza/elasticsearch/eshot
 oc expose service elasticsearch
+oc new-app https://github.com/p-sforza/elasticsearch/kibana
+oc expose service kibana
 ```
 NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare il deployment.
 
@@ -73,10 +76,12 @@ NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare i
 # NOTE:
 Per un run locale:
 ```
-git clone https://github.com/p-sforza/elasticsearch-core-2.4-centos
+--- OLD: git clone https://github.com/p-sforza/elasticsearch-core-2.4-centos
+--- OLD: git clone https://github.com/p-sforza/elasticsearch
+
 git clone https://github.com/p-sforza/elasticsearch
 
-cd [https://github.com/p-sforza/elasticsearch | elasticsearch]
+cd [ecore | eshot | kibana]
 docker build -t IMAGE_NAME:IMAGE_VERSION -f ./Dockerfile .
 docker run IMAGE_NAME:IMAGE_VERSION
 ```
