@@ -32,7 +32,7 @@ oc new-project myelastic
 oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch/ecore
 ```
 NOTE: Aspetta che termini la build di base (circa 2 min.).
-
+ 
 ### APP
 ```
 oc new-app https://github.com/p-sforza/elasticsearch/eshot
