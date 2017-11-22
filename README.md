@@ -28,16 +28,15 @@ I repo usati al momento sono
 ### Base image
 ```
 oc new-project myelastic
---- OLD CMD: oc new-build https://github.com/p-sforza/elasticsearch-core-2.4-centos
 oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch
 ```
 NOTE: Aspetta che termini la build di base (circa 2 min.).
  
 ### APP
 ```
-oc new-app https://github.com/p-sforza/elasticsearch/eshot
-oc expose service elasticsearch
-oc new-app https://github.com/p-sforza/elasticsearch/kibana
+oc new-app --name=eshot --context-dir='eshot' https://github.com/p-sforza/elasticsearch
+oc expose service eshot
+oc new-app --name=kibana --context-dir='kibana' https://github.com/p-sforza/elasticsearch
 oc expose service kibana
 ```
 NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare il deployment.
