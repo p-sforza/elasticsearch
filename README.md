@@ -84,4 +84,7 @@ git clone https://github.com/p-sforza/elasticsearch
 cd [ecore | eshot | kibana]
 docker build -t IMAGE_NAME:IMAGE_VERSION -f ./Dockerfile .
 docker run IMAGE_NAME:IMAGE_VERSION
+
+in caso di kibana aggiungere la variabile d'ambiente per il puntamento a ES:
+docker run -e "ELASTIC_URL=http://172.17.0.2:9200" kibana:2.0
 ```

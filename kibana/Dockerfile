@@ -12,7 +12,7 @@ ENV \
        KIBANA_VER=4.6.x \
        #KIBANA_CONF=/usr/share/... \
        INSTANCE_RAM=512G \
-       ES_JAVA_OPTS="-Dmapper.allow_dots_in_name=true"
+       ES_JAVA_OPTS="-Dmapper.allow_dots_in_name=true" 
  
 LABEL \
        summary="$SUMMARY" \
@@ -24,7 +24,7 @@ LABEL \
        version="1" \
        release="1"
 
-
+# PREPARE
 RUN ["/bin/bash", "-c", "mkdir -p ${HOME} && ls -lai ${HOME}"]
 ADD kibana-4.6.6-x86_64.rpm ${HOME}
 ADD script ${HOME}/script
@@ -34,8 +34,12 @@ RUN ["/bin/bash", "-c", "yum -y install epel-release"]
 RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
 
 # INSTALL, CONFIGURE AND RUN KIBANA
-RUN ["/bin/bash", "-c", "yum -y install ${HOME}/kibana-4.6.6-x86_64.rpm && rm -f ${HOME}/kibana-4.6.6-x86_64.rpm"]
-RUN ["/bin/bash", "-c", "chsh -s /bin/bash kibana && mkdir /home/kibana && chown -R kibana:kibana /home/kibana"]
+RUN ["/bin/bash", "-c", "yum -y install ${HOME}/kibana-4.6.6-x86_64.rpm && \
+                         rm -f ${HOME}/kibana-4.6.6-x86_64.rpm"]
+
+RUN ["/bin/bash", "-c", "chsh -s /bin/bash kibana && \
+                         mkdir /home/kibana/ && \
+                         chown -R kibana:kibana /home/kibana"]
 
 RUN ["/bin/bash", "-c", "chown -R kibana:kibana ${HOME} && \
                          chmod +x ${HOME}/script/run.sh && \
@@ -45,5 +49,5 @@ RUN ["/bin/bash", "-c", "chown -R kibana:kibana ${HOME} && \
 
 USER kibana
 EXPOSE 5601
-ENTRYPOINT ["/home/kibana/run.sh"]
 
+CMD ["/home/kibana/run.sh"]
