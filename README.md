@@ -29,7 +29,7 @@ I repo usati al momento sono
 ```
 oc new-project myelastic
 --- OLD CMD: oc new-build https://github.com/p-sforza/elasticsearch-core-2.4-centos
-oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch/ecore
+oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch
 ```
 NOTE: Aspetta che termini la build di base (circa 2 min.).
  
