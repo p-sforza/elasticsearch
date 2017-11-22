@@ -85,6 +85,7 @@ cd [ecore | eshot | kibana]
 docker build -t IMAGE_NAME:IMAGE_VERSION -f ./Dockerfile .
 docker run IMAGE_NAME:IMAGE_VERSION
 
-in caso di kibana aggiungere la variabile d'ambiente per il puntamento a ES:
-docker run -e "ELASTIC_URL=http://172.17.0.2:9200" kibana:2.0
+in caso di kibana è possibile puntare alla URL di default (http://eshot:9200 usata in openshift costruendo il servizio eshot) oppure aggiungere la variabile d'ambiente per il puntamento ad un ES diverso:
+CASO 1: docker run kibana:2.0
+CASO 2: docker run -e "ELASTIC_URL=http://172.17.0.2:9200" kibana:2.0
 ```
