@@ -31,7 +31,7 @@ ADD mapping ${HOME}/mapping
 ADD script ${HOME}/script
 ADD type ${HOME}/type
 
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch ${HOME} && ls -lai ${HOME}"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch ${HOME} && ls -lai ${HOME}"]
 RUN ["/bin/bash", "-c", "chmod +x ${HOME}/script/insertdata.sh && ls -lai ${HOME}/script"]
 RUN ["/bin/bash", "-c", "su elasticsearch --preserve-environment ${HOME}/script/insertdata.sh "]
 

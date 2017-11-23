@@ -3,7 +3,6 @@ echo "ENVIRONMENT:";
    env;
 echo "END ENVIRONMENT";
 
-#touch ${ELASTIC_LOG} && ls -lai /usr/share/elasticsearch/logs/;
 echo "NEW BUILD FOR ELASTIC!" > "${ELASTIC_LOG}";
 
 ELASTIC_PID=$(ps -aux | grep elastic | grep java | grep -v grep | awk '{ print $2 }');

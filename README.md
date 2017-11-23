@@ -28,7 +28,7 @@ I repo usati al momento sono
 ### Base image
 ```
 oc new-project myelastic
-oc new-build --context-dir='ecore' https://github.com/p-sforza/elasticsearch
+oc new-build --name=ecore --context-dir='ecore' https://github.com/p-sforza/elasticsearch
 ```
 NOTE: Aspetta che termini la build di base (circa 2 min.).
  
