@@ -75,9 +75,6 @@ NOTE: Opzionalmente configura i webhooks sui due imagestream per automatizzare i
 # NOTE:
 Per un run locale:
 ```
---- OLD: git clone https://github.com/p-sforza/elasticsearch-core-2.4-centos
---- OLD: git clone https://github.com/p-sforza/elasticsearch
-
 git clone https://github.com/p-sforza/elasticsearch
 
 cd [ecore | eshot | kibana]

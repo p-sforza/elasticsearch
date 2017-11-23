@@ -31,7 +31,6 @@ LABEL \
 
 RUN ["/bin/bash", "-c", "mkdir -p ${HOME} && ls -lai ${HOME}"]
 ADD elasticsearch-2.4.0.rpm ${HOME}
-ADD run.sh ${HOME}
 
 # INSTALL ELASTIC DEPENDENCIES
 RUN ["/bin/bash", "-c", "yum -y install epel-release"]
@@ -40,19 +39,20 @@ RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
 # INSTALL, CONFIGURE AND RUN ELASTIC FOR TEST
 RUN ["/bin/bash", "-c", "yum -y install ${HOME}/elasticsearch-2.4.0.rpm && rm -f ${HOME}/elasticsearch-2.4.0.rpm"]
 RUN ["/bin/bash", "-c", "/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head"]
+RUN ["/bin/bash", "-c", "ln -s /etc/elasticsearch/ /usr/share/elasticsearch/config && \
+                         ln -s /var/log/elasticsearch/ /usr/share/elasticsearch/logs"]
 
 RUN ["/bin/bash", "-c", "mkdir /home/elasticsearch"]
 RUN ["/bin/bash", "-c", "chsh -s /bin/bash elasticsearch"]
 RUN ["/bin/bash", "-c", "echo ELASTIC_LOG = $ELASTIC_LOG >> /home/elasticsearch/.bash_proflle"]
 RUN ["/bin/bash", "-c", "echo network.host: 0.0.0.0 >>  /usr/share/elasticsearch/config/elasticsearch.yml"]
 
-RUN ["/bin/bash", "-c", "usermod -u 10001 elasticsearch
-                         usermod --gid 0 elasticsearch && \
-                         id elasticsearch && \
-                         cat /etc/passwd"]
+RUN ["/bin/bash", "-c", "usermod -u 10001 elasticsearch && \
+                         usermod -g 0 elasticsearch"]
 
-RUN ["/bin/bash", "-c", "ln -s /etc/elasticsearch/ /usr/share/elasticsearch/config && \
-                         ln -s /var/log/elasticsearch/ /usr/share/elasticsearch/logs"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch /var/log/elasticsearch/ && \
+                         chgrp -R 0 /var/log/elasticsearch/ && \
+                         chmod -R g=u /var/log/elasticsearch/"]
 
 RUN ["/bin/bash", "-c", "chown -R elasticsearch /usr/share/elasticsearch/ && \
                          chgrp -R 0 /usr/share/elasticsearch/ && \
@@ -66,6 +66,7 @@ RUN ["/bin/bash", "-c", "chown -R elasticsearch /home/elasticsearch/ && \
                          chgrp -R 0 /home/elasticsearch/ && \
                          chmod -R g=u /home/elasticsearch/"]
   
+ADD run.sh ${HOME}
 RUN ["/bin/bash", "-c", "chmod +x ${HOME}/run.sh && \
                          su elasticsearch --preserve-environment ${HOME}/run.sh && \
                          rm -f ${HOME}/run.sh"]
@@ -74,4 +75,3 @@ RUN ["/bin/bash", "-c", "chmod +x ${HOME}/run.sh && \
 RUN ["/bin/bash", "-c", "yum install -y nodejs npm net-tools"]
 RUN ["/bin/bash", "-c", "npm install es-json-load -g"]
 
-USER 10001
