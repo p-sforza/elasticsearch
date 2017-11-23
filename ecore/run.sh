@@ -2,7 +2,11 @@
 #
 
 ELASTIC_LOG=/usr/share/elasticsearch/logs/elasticsearch.log
+ls -lai /usr/share/elasticsearch/logs
 runuser -l elasticsearch -c 'echo "" > $ELASTIC_LOG';
+echo "ELASTIC LOG CONTENT IS:"
+  cat ${ELASTIC_LOG}
+echo "END OF ELASTIC LOG CONTENT"
 
 ELASTIC_PID=$(ps -aux | grep elastic | grep java | grep -v grep | awk '{ print $2 }');
 if [ $ELASTIC_PID ]; then
