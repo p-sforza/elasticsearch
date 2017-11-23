@@ -44,6 +44,7 @@ RUN ["/bin/bash", "-c", "ln -s /etc/elasticsearch/ /usr/share/elasticsearch/conf
 
 RUN ["/bin/bash", "-c", "mkdir /home/elasticsearch"]
 RUN ["/bin/bash", "-c", "chsh -s /bin/bash elasticsearch"]
+RUN ["/bin/bash", "-c", "echo \"elasticsearch:password\"|chpasswd"]
 RUN ["/bin/bash", "-c", "echo ELASTIC_LOG = $ELASTIC_LOG >> /home/elasticsearch/.bash_proflle"]
 RUN ["/bin/bash", "-c", "echo network.host: 0.0.0.0 >>  /usr/share/elasticsearch/config/elasticsearch.yml"]
 
