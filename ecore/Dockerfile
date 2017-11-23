@@ -39,18 +39,18 @@ RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
 
 # INSTALL, CONFIGURE AND RUN ELASTIC FOR TEST
 RUN ["/bin/bash", "-c", "yum -y install ${HOME}/elasticsearch-2.4.0.rpm && rm -f ${HOME}/elasticsearch-2.4.0.rpm"]
+RUN ["/bin/bash", "-c", "usermod --gid 0 elasticsearch"]
 
 RUN ["/bin/bash", "-c", "ln -s /etc/elasticsearch/ /usr/share/elasticsearch/config"]
 RUN ["/bin/bash", "-c", "ln -s /var/log/elasticsearch/ /usr/share/elasticsearch/logs"]
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/ && chgrp -R 0 /usr/share/elasticsearch/ && chmod -R g=u /usr/share/elasticsearch/"]
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch /etc/elasticsearch/ && chgrp -R 0 /etc/elasticsearch/ && chmod -R g=u /etc/elasticsearch/"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch /usr/share/elasticsearch/ && chgrp -R 0 /usr/share/elasticsearch/ && chmod -R g=u /usr/share/elasticsearch/"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch /etc/elasticsearch/ && chgrp -R 0 /etc/elasticsearch/ && chmod -R g=u /etc/elasticsearch/"]
 
 RUN ["/bin/bash", "-c", "mkdir /home/elasticsearch"]
-RUN ["/bin/bash", "-c", "useradd -G 0 elasticsearch"]
 RUN ["/bin/bash", "-c", "chsh -s /bin/bash elasticsearch"]
 RUN ["/bin/bash", "-c", "echo ELASTIC_LOG = $ELASTIC_LOG >> /home/elasticsearch/.bash_proflle"]
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch /home/elasticsearch/ && chgrp -R 0 /home/elasticsearch/ && chmod -R g=u /home/elasticsearch/"]
-RUN ["/bin/bash", "-c", "chown -R elasticsearch:elasticsearch /etc/elasticsearch/ && chgrp -R 0 /etc/elasticsearch/ && chmod -R g=u /etc/elasticsearch/"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch /home/elasticsearch/ && chgrp -R 0 /home/elasticsearch/ && chmod -R g=u /home/elasticsearch/"]
+RUN ["/bin/bash", "-c", "chown -R elasticsearch /etc/elasticsearch/ && chgrp -R 0 /etc/elasticsearch/ && chmod -R g=u /etc/elasticsearch/"]
 RUN ["/bin/bash", "-c", "echo network.host: 0.0.0.0 >>  /usr/share/elasticsearch/config/elasticsearch.yml"]
 RUN ["/bin/bash", "-c", "/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head"]
   
