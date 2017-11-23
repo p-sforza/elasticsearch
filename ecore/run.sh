@@ -41,5 +41,8 @@ else
         echo "ELASTIC IS DOWN!" 
 fi
 
+echo "REMOVING LOG FILES"
+rm -rf /usr/share/elasticsearch/logs/*
+
 echo "SCRIPT END... BYE BYE" 
 
