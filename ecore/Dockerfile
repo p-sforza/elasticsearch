@@ -39,7 +39,7 @@ RUN ["/bin/bash", "-c", "yum -y install java-1.8.0-openjdk nss_wrapper gettext"]
 
 # INSTALL, CONFIGURE AND RUN ELASTIC FOR TEST
 RUN ["/bin/bash", "-c", "yum -y install ${HOME}/elasticsearch-2.4.0.rpm && rm -f ${HOME}/elasticsearch-2.4.0.rpm"]
-RUN ["/bin/bash", "-c", "usermod --gid 0 elasticsearch"]
+RUN ["/bin/bash", "-c", "usermod --gid 0 elasticsearch && id elasticsearch"]
 
 RUN ["/bin/bash", "-c", "ln -s /etc/elasticsearch/ /usr/share/elasticsearch/config"]
 RUN ["/bin/bash", "-c", "ln -s /var/log/elasticsearch/ /usr/share/elasticsearch/logs"]

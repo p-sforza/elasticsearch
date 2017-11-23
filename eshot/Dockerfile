@@ -1,4 +1,5 @@
-FROM elasticsearch-core-24-centos:latest
+#FROM elasticsearch-core-24-centos:latest
+FROM ecore:latest
 
 ENV \
        SUMMARY="Image to create index for elastic 2.4 in build phase" \
