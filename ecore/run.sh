@@ -2,8 +2,8 @@
 #
 
 ELASTIC_LOG=/usr/share/elasticsearch/logs/elasticsearch.log
-ls -lai /usr/share/elasticsearch/logs
 runuser -l elasticsearch -c 'echo "" > $ELASTIC_LOG';
+ls -lai /usr/share/elasticsearch/logs
 echo "ELASTIC LOG CONTENT IS:"
   cat ${ELASTIC_LOG}
 echo "END OF ELASTIC LOG CONTENT"
