@@ -39,13 +39,22 @@ RUN ["/bin/bash", "-c", "yum -y install ${HOME}/kibana-4.6.6-x86_64.rpm && \
 
 RUN ["/bin/bash", "-c", "chsh -s /bin/bash kibana && \
                          mkdir /home/kibana/ && \
-                         chown -R kibana:kibana /home/kibana"]
+                         echo \"kibana:password\"|chpasswd && \
+                         usermod -u 10001 kibana && \
+                         usermod -g 0 kibana && \
+                         chown -R kibana /home/kibana && \
+                            chgrp -R 0 /home/kibana && \
+                            chmod -R g=u /home/kibana"]
 
-RUN ["/bin/bash", "-c", "chown -R kibana:kibana ${HOME} && \
+RUN ["/bin/bash", "-c", "cp ${HOME}/script/run.sh /home/kibana && \
+                         chown -R kibana ${HOME} && \
+                            chgrp -R 0 ${HOME} && \
+                            chmod -R g=u ${HOME} && \                         
+                         chown -R kibana /opt/kibana && \
+                            chgrp -R 0 /opt/kibana && \
+                            chmod -R g=u /opt/kibana && \
                          chmod +x ${HOME}/script/run.sh && \
-                         cp ${HOME}/script/run.sh /home/kibana && \
-                         chown -R kibana:kibana /opt/kibana && \
-                         ls -lai ${HOME}/script"]
+                         cp ${HOME}/script/run.sh /home/kibana"]
 
 USER kibana
 EXPOSE 5601
