@@ -27,7 +27,6 @@ LABEL \
 # PREPARE
 RUN ["/bin/bash", "-c", "mkdir -p ${HOME} && ls -lai ${HOME}"]
 ADD kibana-4.6.6-x86_64.rpm ${HOME}
-ADD script ${HOME}/script
 
 # INSTALL KIBANA DEPENDENCIES
 RUN ["/bin/bash", "-c", "yum -y install epel-release"]
@@ -46,6 +45,7 @@ RUN ["/bin/bash", "-c", "chsh -s /bin/bash kibana && \
                             chgrp -R 0 /home/kibana && \
                             chmod -R g=u /home/kibana"]
 
+ADD script ${HOME}/script
 RUN ["/bin/bash", "-c", "cp ${HOME}/script/run.sh /home/kibana && \
                          chown -R kibana ${HOME} && \
                             chgrp -R 0 ${HOME} && \

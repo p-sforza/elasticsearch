@@ -8,7 +8,7 @@ echo "ENVIRONMENT:";
 echo "END ENVIRONMENT";
 
 KIBANA_PID=$(ps -aux | grep kibana | grep -v grep | awk '{ print $2 }');
--ps -aux;
+ps -aux;
 echo "KIBANA PID IS: $KIBANA_PID";
 
 if [ $KIBANA_PID ]; then
