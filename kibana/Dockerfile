@@ -40,13 +40,13 @@ RUN ["/bin/bash", "-c", "chsh -s /bin/bash kibana && \
                          mkdir /home/kibana/ && \
                          echo \"kibana:password\"|chpasswd && \
                          usermod -u 10001 kibana && \
-                         usermod -g 0 kibana && \
-                         chown -R kibana /home/kibana && \
-                            chgrp -R 0 /home/kibana && \
-                            chmod -R g=u /home/kibana"]
+                         usermod -g 0 kibana"]
 
 ADD script ${HOME}/script
 RUN ["/bin/bash", "-c", "cp ${HOME}/script/run.sh /home/kibana && \
+                         chown -R kibana /home/kibana && \
+                            chgrp -R 0 /home/kibana && \
+                            chmod -R g=u /home/kibana && \
                          chown -R kibana ${HOME} && \
                             chgrp -R 0 ${HOME} && \
                             chmod -R g=u ${HOME} && \                         
@@ -59,4 +59,4 @@ RUN ["/bin/bash", "-c", "cp ${HOME}/script/run.sh /home/kibana && \
 USER kibana
 EXPOSE 5601
 
-ENTRYPOINT ["/home/kibana/run.sh"]
+CMD ["/home/kibana/run.sh"]
