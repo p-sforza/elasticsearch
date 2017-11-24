@@ -59,4 +59,4 @@ RUN ["/bin/bash", "-c", "cp ${HOME}/script/run.sh /home/kibana && \
 USER kibana
 EXPOSE 5601
 
-CMD ["/home/kibana/run.sh"]
+ENTRYPOINT ["/home/kibana/run.sh"]

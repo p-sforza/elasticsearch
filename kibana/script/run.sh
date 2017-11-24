@@ -26,7 +26,7 @@ else
 
 	# START KIBANA
         echo "STARTING KIBANA!"
-	/opt/kibana/bin/kibana
+	/opt/kibana/bin/kibana &
 fi
 
 echo "SCRIPT END... BYE BYE" 
